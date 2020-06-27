@@ -9,6 +9,8 @@
     font-size: $default-font-size;
     transform: skewX(-12deg);
 
+   
+
     @include respond (tab-port){
         width: 100%;
         padding: 4rem;
@@ -23,12 +25,18 @@
         height: 15rem;
         width: 15rem;
         float: left;
-        -webkit-shape-outside: circle(50% at 50% 50%);
-        shape-outside: circle(50% at 50% 50%);
-        -webkit-clip-path: circle(50% at 50% 50%);
-        clip-path: circle(50% at 50% 50%);
         transform: translatex(-3rem) skewX(12deg);
         position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+
+        @supports(clip-path:polygon(0 0)) or (-webkit-clip-path:polygon(0 0)){
+            -webkit-shape-outside: circle(50% at 50% 50%);
+            shape-outside: circle(50% at 50% 50%);
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            border-radius: none ;
+        }
 
         @include respond (phone){
             transform: translatex(-3rem) skewX(0);
